@@ -53,7 +53,7 @@ def the_pasrs_func(game_id,your_username,google_sheet):
 
 @functions_framework.http
 def my_extension_api(request):
-    the_pasrs_func()
+    the_pasrs_func("gen9vgc2026regibo3-2577336831","brumisdumb","Nerd shit")
 
 if __name__ == "__main__":
     the_pasrs_func("gen9vgc2026regibo3-2577336831","brumisdumb","Nerd shit")
