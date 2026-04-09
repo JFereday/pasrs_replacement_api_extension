@@ -1,5 +1,4 @@
 requests
-json
 gspread
 oauth2client
 functions_framework
