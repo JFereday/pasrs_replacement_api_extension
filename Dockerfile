@@ -1,21 +1,20 @@
-# Example Dockerfile for a Python Flask application
-# Use a slim base image for smaller size
-FROM python:3.9-slim
+# Use the official Python slim image
+FROM python:3.11-slim
 
-# Set the working directory in the container
+# Allow statements and log messages to immediately appear in the logs
+ENV PYTHONUNBUFFERED True
+
+# Set the working directory
 WORKDIR /app
 
-# Copy requirements.txt and install dependencies
+# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code
+# Copy the rest of the application code
 COPY . .
 
-# Cloud Run will inject the PORT environment variable.
-# Your application should listen on 0.0.0.0 and the port specified by this variable.
-# EXPOSE 8080 # This is optional, but good practice
-
-# Command to run your application
-# For Flask, you might use Gunicorn or another WSGI server
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
+# Cloud Run injects the PORT environment variable. 
+# Use Gunicorn as a production-grade WSGI server.
+# Change 'main:app' to the actual entry point of your Flask/FastAPI app.
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
