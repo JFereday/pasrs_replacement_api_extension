@@ -18,12 +18,12 @@ def ping_check(request):
     return jsonify({"status": "success", "message": "Pong!"}), 200
 
 
-scope = [
-    "https://spreadsheets.google.com/feeds",
-    "https://www.googleapis.com/auth/drive"
-]
-creds = ServiceAccountCredentials.from_json_keyfile_name('jf-pasrs-replacement-9ee60432cba1.json', scope)
-client = gspread.authorize(creds)
+# scope = [
+#     "https://spreadsheets.google.com/feeds",
+#     "https://www.googleapis.com/auth/drive"
+# ]
+# creds = ServiceAccountCredentials.from_json_keyfile_name('jf-pasrs-replacement-9ee60432cba1.json', scope)
+# client = gspread.authorize(creds)
 
 
 def the_pasrs_func(game_id,your_username,google_sheet):
@@ -54,16 +54,16 @@ def the_pasrs_func(game_id,your_username,google_sheet):
 
     winner = [item for item in itemised_log if "|win|" in item][0].split("|")[2]
 
-    spreadsheet = client.open(google_sheet)
+    # spreadsheet = client.open(google_sheet)
 
-    try:
-        sheet = spreadsheet.worksheet("pasrs-data")
-    except gspread.exceptions.WorksheetNotFound:
-        sheet = spreadsheet.add_worksheet(title="pasrs-data", rows="100", cols="10")
-        sheet.append_row(["Replay","Opponent","Winner","Player Lead 1","Player Lead 2","Player Back 1","Player Back 2","Opponent Lead 1","Opponent Lead 2","Opponent Back 1","Opponent Back 2","Player Tera Mon","Player Tera Type","Oppponent Tera Mon","Oppponent Tera Type"])
+    # try:
+    #     sheet = spreadsheet.worksheet("pasrs-data")
+    # except gspread.exceptions.WorksheetNotFound:
+    #     sheet = spreadsheet.add_worksheet(title="pasrs-data", rows="100", cols="10")
+    #     sheet.append_row(["Replay","Opponent","Winner","Player Lead 1","Player Lead 2","Player Back 1","Player Back 2","Opponent Lead 1","Opponent Lead 2","Opponent Back 1","Opponent Back 2","Player Tera Mon","Player Tera Type","Oppponent Tera Mon","Oppponent Tera Type"])
 
-    new_row = [url] + [opponent_username] + [winner] + player_pokemon + opponent_pokemon + player_tera + opponent_tera
-    sheet.append_row(new_row)
+    # new_row = [url] + [opponent_username] + [winner] + player_pokemon + opponent_pokemon + player_tera + opponent_tera
+    # sheet.append_row(new_row)
 
 # @functions_framework.http
 # def my_extension_api(request):
