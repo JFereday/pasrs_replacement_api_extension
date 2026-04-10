@@ -65,9 +65,9 @@ def the_pasrs_func(game_id,your_username,google_sheet):
     new_row = [url] + [opponent_username] + [winner] + player_pokemon + opponent_pokemon + player_tera + opponent_tera
     sheet.append_row(new_row)
 
-@functions_framework.http
-def my_extension_api(request):
-    the_pasrs_func("gen9vgc2026regibo3-2577336831","brumisdumb","Nerd shit")
+# @functions_framework.http
+# def my_extension_api(request):
+#     the_pasrs_func("gen9vgc2026regibo3-2577336831","brumisdumb","Nerd shit")
 
 if __name__ == "__main__":
     the_pasrs_func("gen9vgc2026regibo3-2577336831","brumisdumb","Nerd shit")
