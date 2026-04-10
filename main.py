@@ -3,6 +3,20 @@ import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import functions_framework
+from flask import jsonify
+
+@functions_framework.http
+def ping_check(request):
+    """
+    HTTP Cloud Function.
+    Args:
+        request (flask.Request): The request object.
+    Returns:
+        The response object, or any set of values that can be turned into a
+        Response object using `make_response`.
+    """
+    return jsonify({"status": "success", "message": "Pong!"}), 200
+
 
 scope = [
     "https://spreadsheets.google.com/feeds",
